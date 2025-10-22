@@ -41,8 +41,8 @@ This system implements a secure authentication and authorization prototype with:
 - **Credential Validation**: Secure credential verification process
 
 ### 2. **Authorization Security**
-- **Role-based Access Control**: Clear separation of privileges
-- **Method-level Security**: Fine-grained access control
+- **Role-based Access Control**: Separation of privileges
+- **Method-level Security**: Access control
 - **Principle of Least Privilege**: Users only get necessary permissions
 
 ### 3. **Input Security**
@@ -55,7 +55,6 @@ This system implements a secure authentication and authorization prototype with:
 - **Real-time Monitoring**: Console output shows security events
 - **Secure Defaults**: Secure configuration by default
 
-This system demonstrates enterprise-grade security practices suitable for production environments while maintaining simplicity for educational purposes.
 
 
 ## Quick Start
@@ -88,21 +87,16 @@ chmod +x test_auth_system.sh
 ./test_auth_system.sh
 ```
 
+This script will:
+- Test all predefined users
+- Verify authorization works correctly
+- Create new users dynamically
+- Test role-based access control
+- Demonstrate user management operations
+- Clean up test users
+
 **Important:** Keep both terminals open - Terminal 1 shows the application logs and user management activity, while Terminal 2 runs the test scenarios.
 
-### Troubleshooting
-
-**If you get "Port 8082 was already in use" error:**
-```bash
-# Find what's using port 8082
-lsof -i :8082
-
-# Kill the process (replace PID with actual process ID)
-kill <PID>
-
-# Or use a different port by updating application.properties
-echo "server.port=8083" > src/main/resources/application.properties
-```
 
 ### Predefined Users
 The system comes with three predefined users for testing:
@@ -114,6 +108,7 @@ The system comes with three predefined users for testing:
 | `system_writer` | `system_writer_pass` | WRITE | Write access |
 
 ## API Endpoints
+This can b
 
 ### Service Endpoints (Role-based Access)
 
@@ -129,44 +124,9 @@ The system comes with three predefined users for testing:
 - `GET /service/write/ping` - Write access health check
 - `POST /service/write/create` - Create new resources
 
-### User Management Endpoints (Requires ADMIN role)
 
-#### Create User
-```bash
-curl -u system_admin:system_admin_pass -X POST http://localhost:8082/auth/users \
-  -H "Content-Type: application/json" \
-  -d '{"username":"newuser","password":"newpass","roles":["READ"]}'
-```
 
-#### Update User Roles
-```bash
-curl -u system_admin:system_admin_pass -X PUT http://localhost:8082/auth/users/newuser/roles \
-  -H "Content-Type: application/json" \
-  -d '{"roles":["WRITE","READ"]}'
-```
 
-#### Delete User
-```bash
-curl -u system_admin:system_admin_pass -X DELETE http://localhost:8082/auth/users/newuser
-```
-
-## Testing the System
-
-### Automated Test Suite
-Run the comprehensive test script to verify all functionality:
-
-```bash
-chmod +x test_auth_system.sh
-./test_auth_system.sh
-```
-
-This script will:
-- Test all predefined users
-- Verify authorization works correctly
-- Create new users dynamically
-- Test role-based access control
-- Demonstrate user management operations
-- Clean up test users
 
 ### Manual Testing Examples
 
