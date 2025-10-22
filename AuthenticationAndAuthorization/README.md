@@ -180,6 +180,6 @@ src/main/java/org/ngafid/
 src/main/resources/
 └── application.properties          # Application configuration
 
-test_auth_system.sh                 # Comprehensive test script
+test_auth_system.sh                 # TEst script
 ```
 
