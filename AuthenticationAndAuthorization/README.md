@@ -65,6 +65,10 @@ This system demonstrates enterprise-grade security practices suitable for produc
 - Maven 3.6+
 
 ### Running the Application
+
+**You need TWO terminals for this setup:**
+
+#### Terminal 1: Start the Application
 ```bash
 # Build the project
 mvn clean compile
@@ -74,6 +78,31 @@ mvn spring-boot:run
 ```
 
 The application will start on **http://localhost:8082**
+
+#### Terminal 2: Run Tests
+```bash
+# Make the test script executable
+chmod +x test_auth_system.sh
+
+# Run the comprehensive test suite
+./test_auth_system.sh
+```
+
+**Important:** Keep both terminals open - Terminal 1 shows the application logs and user management activity, while Terminal 2 runs the test scenarios.
+
+### Troubleshooting
+
+**If you get "Port 8082 was already in use" error:**
+```bash
+# Find what's using port 8082
+lsof -i :8082
+
+# Kill the process (replace PID with actual process ID)
+kill <PID>
+
+# Or use a different port by updating application.properties
+echo "server.port=8083" > src/main/resources/application.properties
+```
 
 ### Predefined Users
 The system comes with three predefined users for testing:
